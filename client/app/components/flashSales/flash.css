@@ -1,0 +1,160 @@
+.flash-sales {
+    margin-left: 150px;
+    text-align: center;
+    padding: 1px;
+   margin-bottom: 150px;
+    margin-top: -140px;
+    display: flex;
+  
+  }
+  .price-color{
+    color: red;
+    font-weight: bold;
+  }
+  .header h2 {
+    color: red;
+  }
+  
+  .header h1 {
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+    
+  }
+  
+  .timer {
+    justify-content: center;
+    margin-bottom: 200px;
+  }
+  
+  .timer div {
+    margin: 0 10px;
+  }
+  
+  .timer span {
+    font-size: 2rem;
+    display: block;
+  }
+  
+  .products {
+    margin-top: 200px;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+  }
+  
+  .product {
+    position: relative;
+    width: 300px;
+    text-align: left;
+    padding-left: 50px;
+    border-radius: 10px; 
+    background-color: rgb(247, 247, 247);
+    padding: 10px; 
+    box-sizing: border-box; 
+  }
+  
+  
+  .product img {
+    width: 250px;
+    height: 200px;
+  }
+  
+  .discount {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: red;
+    color: white;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+  .product h3 {
+    font-size: 1.2rem;
+  }
+  
+  .product p {
+    margin: 5px 0;
+  }
+  
+  .product button {
+    background-color: black;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+  
+  .product button:disabled {
+    background-color: #ccc;
+    color: #999;
+    cursor: not-allowed;
+  }
+  
+  .view-all {
+    margin-top: 35px;
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+  }
+  
+  .category-heading {
+    display: inline-flex;
+    align-items: center;
+  }
+  
+  .category-heading img {
+    width: 15px;
+    height: auto;
+    margin-right: 5px;
+    border-radius: 5px;
+  }
+  
+  .category-heading h2 {
+    font-size: 20px;
+    margin: 0;
+  }
+  .icon-heart2 {
+    padding-left: 18px;
+  
+  }
+  
+  
+  .top-prod {
+    flex-grow: 1;
+    text-align: left;
+    font-size: 2.5rem;
+    margin-bottom: 100px;
+    margin-left: 185px;
+  }
+  
+  
+  .top-subtitle h2 {
+    margin-left: 1200px;
+    margin-bottom: 1500px;
+  }
+  
+  .top-label2 {
+    align-items: center;
+    margin-left: 199px;
+    padding-bottom: 25px;
+  }
+  
+  .top-label2 img {
+    width: 15px; 
+    height: auto;
+    margin-left: 0;
+    border-radius: 5px;
+    margin-bottom: -20px;
+  }
+  
+  .top-label2 h2 {
+    color: rgb(249, 126, 10);
+    font-size: 20px; 
+    margin-bottom: -20px;
+    margin-left: 0;
+  }
+  
