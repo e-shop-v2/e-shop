@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 export default  function Home() {
   const router = useRouter();
 
+
+
   return (
     <main>
       <div>
@@ -15,5 +17,8 @@ export default  function Home() {
         >singUp</button>
       </div>
     </main>
+
+    
+  
   );
 }
