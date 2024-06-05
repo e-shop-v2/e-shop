@@ -1,0 +1,26 @@
+Makes ur life easier
+
+
+
+/// register a user as seller
+http://localhost:8080/api/auth/register/seller
+/// register a user as buyer
+http://localhost:8080/api/auth/register/buyer
+/// login as seller , buyer or admin
+http://localhost:8080/api/auth/login
+/// change user role from buyer to seller or from seller to buyer
+http://localhost:8080/api/auth/change-role
+/// get all users (sellers and buyers)
+http://localhost:8080/api/users/getAll
+/// get one user by his email
+http://localhost:8080/api/users/getOne/:email
+/// delete user by his email
+http://localhost:8080/api/users/delete/:email
+/// post a product
+http://localhost:8080/api/products/add
+/// get all products
+http://localhost:8080/api/products/getAll
+/// get one product by its id
+http://localhost:8080/api/products/getOne/:id
+/// delete a product by its id
+http://localhost:8080/api/products/delete/:id
