@@ -9,7 +9,6 @@ import loginimg from "../../images/login.png";
 import "./login.css";
 interface MyJwtPayload {
   role: string;
-  
 }
 const Login = () => {
   const [emailOrPhone, setEmailOrPhone] = useState("");

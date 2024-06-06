@@ -3,9 +3,11 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./prod.css";
+import { useRouter } from "next/navigation";
+
 const ProductList = () => {
   const [products, setProducts] = useState<any[]>([]);
-
+  const router = useRouter();
   useEffect(() => {
     axios
       .get("http://localhost:8080/api/products/getAll")
@@ -16,9 +18,10 @@ const ProductList = () => {
         console.error("There was an error fetching the products!", error);
       });
   }, []);
-  //   const handleImageClick = (id) => {
-  //     navigate(`/OneProduct`, { state: { id: id } });
-  // };
+  const handleImageClick = (id: number) => {
+    //The product list folder is inside the Components folder.
+    router.push(`/components/productList/${id}`), console.log("hol");
+  };
   return (
     <div>
       <div
@@ -38,9 +41,12 @@ const ProductList = () => {
           {products.map((product) => (
             <div key={product.id} className="product-card">
               <img
+                onClick={() => {
+                  handleImageClick(product.id);
+                  console.log("hello");
+                }}
                 src={product.image}
                 alt={product.name}
-                // onClick={() => handleImageClick(product.id)}
               />
               <h3>{product.name}</h3>
 
