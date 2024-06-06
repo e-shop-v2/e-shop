@@ -1,4 +1,4 @@
-.header {
+#navb .header {
     position: fixed;
     width: 100%;
     top: 0;
@@ -7,20 +7,12 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.top-banner {
-    background-color: black;
-    color: white;
-    text-align: center;
-    padding: 10px 0;
-    font-size: 14px;
-}
-
-.top-banner a {
+#navb .top-banner a {
     color: white;
     text-decoration: underline;
 }
 
-.main-nav {
+#navb .main-nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -28,28 +20,28 @@
     background-color: #fff;
 }
 
-.main-nav .logo {
+#navb .main-nav .logo {
     font-size: 24px;
     font-weight: bold;
 }
 
-.main-nav .nav-links {
+#navb .main-nav .nav-links {
     display: flex;
     align-items: center;
 }
 
-.main-nav .nav-links a {
+#navb .main-nav .nav-links a {
     margin-left: 50px;
   margin-right: 90px;
     text-decoration: none;
     color: black;
 }
-.main-nav .nav-links a:hover {
+#navb .main-nav .nav-links a:hover {
     text-decoration: underline; 
     color: rgb(88, 86, 86);
 }
 
-.main-nav .icons {
+#navb .main-nav .icons {
     display: flex;
     align-items: center;
     margin-right: 40px;
@@ -57,16 +49,16 @@
 
 }
 
-.main-nav .icons span {
+#navb .main-nav .icons span {
     padding-left: 14px;
     margin-right: -5px;
     font-size: 18px;
     
 }
-.icon-image{
+#navb .icon-image{
     width: 32px;
     height: 25px;
 }
-.nav-input{
+#navb .nav-input{
     margin-right: 110px;
 }
