@@ -7,6 +7,10 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import loginimg from "../../images/login.png";
 import "./login.css";
+interface MyJwtPayload {
+  role: string;
+  
+}
 const Login = () => {
   const [emailOrPhone, setEmailOrPhone] = useState("");
   const [password, setPassword] = useState("");
@@ -21,7 +25,7 @@ const Login = () => {
       localStorage.setItem("token", token); // Store the token in local storage
 
       // Decode the token to extract user information
-      const decodedToken = jwtDecode(token);
+      const decodedToken = jwtDecode<MyJwtPayload>(token);
       console.log("Decoded Token:", decodedToken);
 
       // Redirect based on the user's role
