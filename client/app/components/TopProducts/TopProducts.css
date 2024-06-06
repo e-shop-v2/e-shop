@@ -1,0 +1,169 @@
+.Top {
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background: #f8f9fa;
+  } 
+  .top-subtitle h2 {
+    margin-left: 1200px;
+  }
+  .span-label {
+    background: #ff4d4d;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+  }
+  
+  .top-prod {
+    flex-grow: 1;
+    text-align: left;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    margin-left: 185px;
+  }
+  
+  .top-label2 img {
+    width: 15px; 
+    height: auto;
+    margin-left: 0;
+    border-radius: 5px;
+    margin-bottom: -20px;
+  }
+  
+  .view-all-button {
+    margin-left: 1200px;
+    width: 15%;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .products {
+    display: flex;
+    justify-content: space-around;
+    padding: 2rem 0;
+  }
+  
+  .product {
+    text-align: center;
+    position: relative;
+  }
+  
+  .product img {
+    width: 250px;
+    height: 200px;
+    object-fit: fill;
+  }
+  
+  .icons2 {
+    display: flex;
+    justify-content: space-between;
+    width: 60px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+  
+  .icon-heart2,
+  .icon-eye {
+    font-size: 1.5rem;
+  }
+  
+  .product h2 {
+    font-size: 1rem;
+    margin: 0.5rem 0;
+  }
+  
+  .price {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .current-price {
+    color: #ff4d4d;
+    font-weight: bold;
+  } 
+  
+  .original-price {
+    margin-left: 0.5rem;
+    text-decoration: line-through;
+    color: grey;
+  }
+  
+  .rating {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .stars {
+    color: #ff4d4d;
+  }
+  
+  .reviews {
+    margin-left: 0.5rem;
+    color: grey;
+  }
+  
+  .music-experience {
+    background: black;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+  }
+  
+  .music-experience h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+  
+  .timer {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .buy-now {
+    background: #00ff00;
+    color: black;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .top-label2 {
+    align-items: center;
+    margin-left: 199px;
+    padding-bottom: 25px;
+  }
+  
+  .top-label2 img {
+    width: 15px; 
+    height: auto;
+    margin-left: 0;
+    border-radius: 5px;
+    margin-bottom: -20px;
+  }
+  
+  .top-label2 h2 {
+    color: rgb(249, 126, 10);
+    font-size: 20px; 
+    margin-bottom: -20px;
+    margin-left: 0;
+  }
+  
