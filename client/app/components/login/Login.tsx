@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import loginimg from "../../images/login.png";
 import "./login.css";
 const Login = () => {
   const [emailOrPhone, setEmailOrPhone] = useState("");
@@ -41,7 +43,7 @@ const Login = () => {
       <div className="login-page">
         <div className="login-container">
           <div className="image-section">
-            <img src="../src/images/login.png" alt="Login" />
+            <Image src={loginimg} alt="Login" />
           </div>
           <div className="form-section">
             <h2>Log in to Exclusive</h2>

@@ -3,6 +3,8 @@ import { useState } from "react";
 import React from "react";
 import axios from "axios";
 import "./sign.css";
+import signimg from "../../images/login.png";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 const signUp = () => {
   const [name, setName] = useState<string>("");
@@ -34,7 +36,7 @@ const signUp = () => {
       <div className="signup-page">
         <div className="signup-container">
           <div className="image-section">
-            <img src="../src/images/login.png" alt="signup" />
+            <Image src={signimg} alt="signup" />
           </div>
           <div className="form-section">
             <h2>Create an account</h2>
@@ -61,6 +63,7 @@ const signUp = () => {
               className="form-input"
             />
             <select
+              style={{ width: "360px" }}
               // value={role}
               onChange={(e) => setRole(e.target.value)}
               className="form-input"

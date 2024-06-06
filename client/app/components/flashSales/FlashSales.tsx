@@ -57,7 +57,7 @@ const FlashSales = async () => {
         <h2 className="top-subtitle">This Month</h2>
       </div>
       <div className="flash-sales">
-        {data.map((el) => (
+        {data.map((el: any) => (
           <div className="products" key={el.id}>
             <div className="product">
               <img
