@@ -1,0 +1,90 @@
+.contact-us-container {
+    padding: 20px;
+    font-family: Arial, sans-serif;
+    margin-top: 190px;
+  }
+  
+  .breadcrumb {
+    font-size: 17px;
+    color: #200808;
+    margin-bottom: 130px;
+  }
+  
+  .contact-us-content {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .contact-details {
+    width: 40%;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+  }
+  
+  .contact-method {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .contact-method .icon {
+    margin-right: 20px;
+  }
+  
+  .contact-method .icon img {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .contact-method .details h3 {
+    margin: 0;
+    font-size: 18px;
+  }
+  
+  .contact-method .details p {
+    margin: 5px 0;
+    color: #666;
+  }
+  
+  .contact-details hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 20px 0;
+  }
+  
+  .contact-form {
+    width: 55%;
+  }
+  
+  .form-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .form-group input {
+    width: 32%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+  }
+  
+  textarea {
+    width: 100%;
+    padding: 10px;
+    height: 150px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 20px;
+  }
+  
+  button {
+    padding: 10px 20px;
+    background: #f44336;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
