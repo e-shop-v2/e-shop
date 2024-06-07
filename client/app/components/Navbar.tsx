@@ -7,7 +7,7 @@ import Image from "next/image";
 import logoutimg from "../images/log-out.png";
 
 import { useAuth } from "./context/AuthContext";
-import { log } from "console";
+
 interface DecodedToken {
   role: string;
 }
