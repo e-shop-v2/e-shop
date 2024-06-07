@@ -97,8 +97,10 @@ const login = async (req, res) => {
       { id: user.id, name: user.name, role: role },
       "your_jwt_secret"
     );
-
-    res.json({ token });
+    const roleUser = user.role;
+    const obj = { token };
+    obj[roleUser] = user;
+    res.json(obj);
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: error.message });
