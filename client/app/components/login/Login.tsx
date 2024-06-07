@@ -1,57 +1,29 @@
 "use client";
 import React, { useState } from "react";
 import axios from "axios";
-import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import loginimg from "../../images/login.png";
-import logoutimg from '../images/log-out.png'
+import logoutimg from "../../images/log-out.png";
 import "./login.css";
-interface MyJwtPayload {
-  role: string;
-}
+import { useAuth } from "../context/AuthContext";
+
 const Login = () => {
   const [emailOrPhone, setEmailOrPhone] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const router = useRouter();
+  const { loginAction } = useAuth();
 
   const handleLogin = async () => {
     try {
       const payload = { email: emailOrPhone, password };
-      const endpoint = "http://localhost:8080/api/auth/login";
-
-      const response = await axios.post(endpoint, payload);
-      const token = response.data.token; // Assuming your token is in response.data.token
-      localStorage.setItem("token", token); // Store the token in local storage
-
-      // Decode the token to extract user information
-      const decodedToken = jwtDecode<MyJwtPayload>(token);
-      console.log("Decoded Token:", decodedToken);
-
-     
-
-      // Redirect based on the user's role
-      if (decodedToken.role === "seller") {
-        router.push("/sellerProfile"); // Redirect to seller profile
-      } else if (decodedToken.role === "buyer") {
-    
-        router.push("/buyerProfile");
-      } 
-     
-    else if  (decodedToken.role === "admin") {
-        router.push("/admin"); // Redirect to admin profile
-      }
-      else {
-        // Handle other roles or scenarios if needed
-        console.log("Unknown role:", decodedToken.role);
-      }
+      await loginAction(payload); // Use loginAction from the context
     } catch (error) {
       console.error("Login error", error);
       alert("Login failed. Please check your credentials and try again.");
     }
-
-  
   };
+
   return (
     <div id="login">
       <div className="login-page">
