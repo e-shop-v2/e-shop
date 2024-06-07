@@ -1,9 +1,9 @@
 import React from "react";
-
+import BuyerEditProfile from "../components/BuyerEditProfile"
 const page = () => {
   return (
     <div>
-      <h3>buyerProfile</h3>
+<BuyerEditProfile/>
     </div>
   );
 };
