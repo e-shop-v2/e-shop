@@ -5,11 +5,13 @@ import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import loginimg from "../../images/login.png";
-import logoutimg from '../images/log-out.png'
+import logoutimg from "../images/log-out.png";
 import "./login.css";
+
 interface MyJwtPayload {
   role: string;
 }
+
 const Login = () => {
   const [emailOrPhone, setEmailOrPhone] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -28,18 +30,17 @@ const Login = () => {
       const decodedToken = jwtDecode<MyJwtPayload>(token);
       console.log("Decoded Token:", decodedToken);
 
-     
+      // Store role in localStorage
+      localStorage.setItem("role", decodedToken.role);
 
       // Redirect based on the user's role
       if (decodedToken.role === "seller") {
         router.push("/sellerProfile"); // Redirect to seller profile
       } else if (decodedToken.role === "buyer") {
-        
         router.push("/buyerProfile"); // Redirect to buyer profile
-      } else if  (decodedToken.role === "admin") {
+      } else if (decodedToken.role === "admin") {
         router.push("/admin"); // Redirect to admin profile
-      }
-      else {
+      } else {
         // Handle other roles or scenarios if needed
         console.log("Unknown role:", decodedToken.role);
       }
@@ -47,9 +48,8 @@ const Login = () => {
       console.error("Login error", error);
       alert("Login failed. Please check your credentials and try again.");
     }
-
-  
   };
+
   return (
     <div id="login">
       <div className="login-page">

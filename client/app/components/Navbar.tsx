@@ -23,14 +23,16 @@ const Navbar = () => {
   }, []);
 
   const handleRedirect = (path: string) => {
+
     router.push(path);
-  };
+ };
 
   const logout = () => {
     localStorage.removeItem('cartItems');
     localStorage.removeItem('token');
     router.push('/login');
     setRole('');
+    
 
  };
 
