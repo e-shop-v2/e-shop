@@ -4,14 +4,9 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import loginimg from "../../images/login.png";
+import logoutimg from "../../images/log-out.png";
 import "./login.css";
 import { useAuth } from "../context/AuthContext";
-interface MyJwtPayload {
-  role: string;
-}
-
-
-
 
 const Login = () => {
   const [emailOrPhone, setEmailOrPhone] = useState<string>("");
@@ -22,7 +17,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const payload = { email: emailOrPhone, password };
-
+      await loginAction(payload); // Use loginAction from the context
     } catch (error) {
       console.error("Login error", error);
       alert("Login failed. Please check your credentials and try again.");

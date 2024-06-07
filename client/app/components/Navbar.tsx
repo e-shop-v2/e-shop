@@ -7,6 +7,7 @@ import Image from "next/image";
 import logoutimg from "../images/log-out.png";
 
 import { useAuth } from "./context/AuthContext";
+import { log } from "console";
 interface DecodedToken {
   role: string;
 }
@@ -17,7 +18,9 @@ const Navbar = () => {
   const { logOut } = useAuth();
 
   const signOut = () => {
-    logOut();
+  logOut();
+  setRole('')
+  
   };
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -25,11 +28,14 @@ const Navbar = () => {
       const decodedToken: DecodedToken = jwtDecode(token);
       setRole(decodedToken.role);
     }
-  }, []);
+    console.log(token);
+    
+    
+  });
 
   const handleRedirect = (path: string) => {
+   router.push(path);
 
-    router.push(path);
  };
 
 
