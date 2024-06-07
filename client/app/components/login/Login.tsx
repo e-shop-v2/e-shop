@@ -1,19 +1,20 @@
 "use client";
-
 import React, { useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import loginimg from "../../images/login.png";
+import logoutimg from '../images/log-out.png'
 import "./login.css";
 interface MyJwtPayload {
   role: string;
 }
 const Login = () => {
-  const [emailOrPhone, setEmailOrPhone] = useState("");
-  const [password, setPassword] = useState("");
+  const [emailOrPhone, setEmailOrPhone] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const router = useRouter();
+
   const handleLogin = async () => {
     try {
       const payload = { email: emailOrPhone, password };
@@ -27,14 +28,20 @@ const Login = () => {
       const decodedToken = jwtDecode<MyJwtPayload>(token);
       console.log("Decoded Token:", decodedToken);
 
+     
+
       // Redirect based on the user's role
       if (decodedToken.role === "seller") {
         router.push("/sellerProfile"); // Redirect to seller profile
       } else if (decodedToken.role === "buyer") {
-        router.push("/home"); // Redirect to buyer profile
-      } else if (decodedToken.role === "admin") {
+    
         router.push("/buyerProfile");
-      } else {
+      } 
+     
+    else if  (decodedToken.role === "admin") {
+        router.push("/admin"); // Redirect to admin profile
+      }
+      else {
         // Handle other roles or scenarios if needed
         console.log("Unknown role:", decodedToken.role);
       }
@@ -42,6 +49,8 @@ const Login = () => {
       console.error("Login error", error);
       alert("Login failed. Please check your credentials and try again.");
     }
+
+  
   };
   return (
     <div id="login">
