@@ -88,7 +88,7 @@ export default function AuthProvider({ children }: any) {
     <AuthContext.Provider
       value={{ token, buyer, admin, seller, loginAction, logOut }}
     >
-      {/* <Navbar /> */}
+      <Navbar />
       {children}
     </AuthContext.Provider>
   );

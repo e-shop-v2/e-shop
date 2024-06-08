@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -11,7 +10,6 @@ const FlashSales = () => {
   //   const [addedToCart, setAddedToCart] = useState({});
   //   const [addedToFavorites, setAddedToFavorites] = useState({});
   const { buyer } = useAuth();
-
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -27,7 +25,6 @@ const FlashSales = () => {
         console.error("Error fetching data:", error);
       }
     }
-
 
     fetchData();
   }, []);
@@ -68,13 +65,6 @@ const FlashSales = () => {
     //The product list folder is inside the Components folder.
     router.push(`/components/productList/${id}`), console.log("hol");
   };
-
-
-    fetchData();
-
- 
-  }, []);
-
   return (
     <div>
       <h1 className="top-prod">Top Products</h1>
@@ -90,10 +80,9 @@ const FlashSales = () => {
         <h2 className="top-subtitle">This Month</h2>
       </div>
       <div className="flash-sales">
-        {data.map((el) => (
+        {data.map((el: any) => (
           <div className="products" key={el.id}>
             <div className="product">
-
               <img
                 onClick={() => {
                   handleImageClick(el.id);
@@ -113,13 +102,10 @@ const FlashSales = () => {
               <span className="icon-heart2" onClick={() => addToFavorites(el)}>
                 ❤️
               </span>
-
-              <img src={el.image} alt={el.name} />
-              <h3>{el.name}</h3>
-
               <p className="price-color">
                 <span>${el.price}</span>
               </p>
+              {/* <StarRating /> */}
             </div>
           </div>
         ))}

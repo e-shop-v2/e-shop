@@ -8,7 +8,6 @@ import OrdersView from './OrdersView';
 import ConfirmationWindow from './ConfirmationWindow';
 import '../../CSS/adminDashboard.css';
 
-
 type Customer = {
   email: string;
   role: string;
@@ -28,7 +27,6 @@ type Order = {
   id: string;
   products: Product[];
 };
-
 
 const AdminDashboard = () => {
   const [currentView, setCurrentView] = useState<'dashboard' | 'customers' | 'products' | 'orders'>('dashboard');
@@ -178,10 +176,22 @@ const AdminDashboard = () => {
     setModalShow(true);
   };
 
+  // added logout function in the admin dashboard 
+  const logOut = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/login';
+  };
+
   return (
+    
     <div className="admin-dashboard">
+     
       <Sidebar handleViewChange={handleViewChange} />
+      
       <main className="admin-main-content">
+      <div className="admin-logout-button" onClick={logOut}> 
+        Logout
+      </div>
         {currentView === 'dashboard' && (
           <DashboardView
             customers={customers}

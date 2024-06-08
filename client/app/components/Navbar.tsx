@@ -34,6 +34,12 @@ const Navbar = () => {
     router.push(path);
   };
 
+  const isAdmin = role === "admin"
+ 
+  if (isAdmin) {
+    return null
+  }
+
   return (
     <div id="navb">
       <header className="header">
