@@ -1,5 +1,5 @@
-"use client";
-import React, { useState } from "react";
+
+import React from "react";
 import CarouselComponent from "../components/carousel/CarouselComponent";
 import FlashSales from "../components/flashSales/FlashSales";
 import Categories from "../components/categories/Categories";
@@ -9,7 +9,7 @@ import FeaturedProducts from "../components/FeaturedProducts/FeaturedProducts";
 import Features from "../components/Features/Features";
 const page = () => {
   return (
-    <div>
+    <div style={{padding:"0 40px "}}>
       <CarouselComponent />
       <FlashSales />
       <Categories />
