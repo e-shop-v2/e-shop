@@ -45,7 +45,7 @@ const TopProducts = () => {
         <h2 className="top-subtitle-no">This Month</h2>
       </div>
 
-      <h1 className="top-prod-no">Top Products</h1>
+      <h1 className="top-prod-no">On Sale</h1>
 
       <section className="music-experience">
         <h2>Enhance Your Music Experience</h2>
