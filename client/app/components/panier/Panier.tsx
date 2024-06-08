@@ -16,10 +16,10 @@ const Panier = () => {
     axios
       .get(`http://localhost:8080/api/panier/usercart/${buyer.id}`)
       .then((res) => {
-        console.log(res.data[0].Products, "panier");
+        console.log(res.data, "panier");
 
         setPanier(res.data[0].Products);
-        const sum = res.data[0].products.reduce((acc, product) => {
+        const sum = res.data[0].Products.reduce((acc, product) => {
           const productTotal = product.price * (product.quantity || 1);
           return acc + productTotal;
         }, 0);
@@ -28,7 +28,7 @@ const Panier = () => {
       .catch((err) => {
         console.error(err);
       });
-  }, [refre, buyer.id]);
+  }, [ buyer.id,refre]);
   const handleQuantityChange = (index, newQuantity) => {
     const updatedProducts = [...panier];
     updatedProducts[index].quantity = newQuantity;

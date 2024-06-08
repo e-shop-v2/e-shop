@@ -19,7 +19,10 @@ const FeaturedProducts = () => {
             <a href="#">Shop Now</a>
           </div>
         </div>
-        <div className="featured-item">
+      
+
+
+        <div className="featured-item medium">
           <img
             src="https://m.media-amazon.com/images/I/4104ys-ac9L._AC_.jpg"
             alt="Women's Collections"
@@ -30,7 +33,7 @@ const FeaturedProducts = () => {
             <a href="#">Shop Now</a>
           </div>
         </div>
-        <div className="featured-item">
+        <div className="featured-item small">
           <img
             src="https://rocknroller.tv/cdn/shop/products/845b48df95edd6855ba376665347ab2b.jpg?v=1697616032&width=1500"
             alt="Speakers"
@@ -41,7 +44,7 @@ const FeaturedProducts = () => {
             <a href="#">Shop Now</a>
           </div>
         </div>
-        <div className="featured-item">
+        <div className="featured-item small">
           <img
             src="https://img.freepik.com/premium-psd/new-arrival-earbuds-headphone-product-green-black-social-media-post-banner_265571-140.jpg"
             alt="Perfume"
@@ -52,6 +55,8 @@ const FeaturedProducts = () => {
             <a href="#">Shop Now</a>
           </div>
         </div>
+
+        
       </div>
     </div>
   );
