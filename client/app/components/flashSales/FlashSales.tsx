@@ -7,8 +7,8 @@ import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
 const FlashSales = () => {
   const router = useRouter();
-  //   const [addedToCart, setAddedToCart] = useState({});
-  //   const [addedToFavorites, setAddedToFavorites] = useState({});
+    // const [addedToCart, setAddedToCart] = useState({});
+    // const [addedToFavorites, setAddedToFavorites] = useState({});
   const { buyer } = useAuth();
   const [data, setData] = useState([]);
 
