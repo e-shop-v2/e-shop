@@ -1,8 +1,17 @@
-"use client"
+
+"use client";
+
 import React, { useState, useEffect } from "react";
 import "./flash.css";
-
+import axios from "axios";
+import { useAuth } from "../context/AuthContext";
+import { useRouter } from "next/navigation";
 const FlashSales = () => {
+  const router = useRouter();
+  //   const [addedToCart, setAddedToCart] = useState({});
+  //   const [addedToFavorites, setAddedToFavorites] = useState({});
+  const { buyer } = useAuth();
+
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -18,6 +27,48 @@ const FlashSales = () => {
         console.error("Error fetching data:", error);
       }
     }
+
+
+    fetchData();
+  }, []);
+  console.log(data);
+
+  const addToPanier = (id: number) => {
+    const data = {
+      BuyerId: buyer.id,
+      ProductId: id,
+    };
+    console.log(data);
+
+    axios
+      .post("http://localhost:8080/api/panier/usercart", data)
+      .then((res) => {
+        console.log("hola", res);
+      })
+      .catch((err) => {
+        console.error("post err", err);
+      });
+  };
+  const addToFavorites = (id: number) => {
+    const data = {
+      BuyerId: buyer.id,
+      ProductId: id,
+    };
+    console.log(data);
+    axios
+      .post("http://localhost:8080/api/wishList/userWishList", data)
+      .then((res) => {
+        console.log("favorites", res);
+      })
+      .catch((err) => {
+        console.error("post err", err);
+      });
+  };
+  const handleImageClick = (id: number) => {
+    //The product list folder is inside the Components folder.
+    router.push(`/components/productList/${id}`), console.log("hol");
+  };
+
 
     fetchData();
 
@@ -42,8 +93,30 @@ const FlashSales = () => {
         {data.map((el) => (
           <div className="products" key={el.id}>
             <div className="product">
+
+              <img
+                onClick={() => {
+                  handleImageClick(el.id);
+                  console.log("hello");
+                }}
+                src={el.image}
+                alt={el.name}
+              />
+              {/* <span className="discount">{getRandomDiscount()}</span> */}
+              <h3>{el.name}</h3>
+              <button
+                onClick={() => addToPanier(el.id)}
+                disabled={addToPanier[el.id]}
+              >
+                {addToPanier[el.id] ? "Added to Cart" : "Add To Cart"}
+              </button>
+              <span className="icon-heart2" onClick={() => addToFavorites(el)}>
+                ❤️
+              </span>
+
               <img src={el.image} alt={el.name} />
               <h3>{el.name}</h3>
+
               <p className="price-color">
                 <span>${el.price}</span>
               </p>

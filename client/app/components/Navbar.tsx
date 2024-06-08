@@ -18,9 +18,8 @@ const Navbar = () => {
   const { logOut } = useAuth();
 
   const signOut = () => {
-  logOut();
-  setRole('')
-  
+    logOut();
+    setRole("");
   };
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -29,15 +28,11 @@ const Navbar = () => {
       setRole(decodedToken.role);
     }
     console.log(token);
-    
-    
   });
 
   const handleRedirect = (path: string) => {
-   router.push(path);
-
- };
-
+    router.push(path);
+  };
 
   return (
     <div id="navb">
@@ -71,10 +66,10 @@ const Navbar = () => {
             <input type="text" placeholder="What are you looking for?" />
             <div className="icons">
               {role === "buyer" && (
-                <span onClick={() => handleRedirect("/favorites")}>❤️</span>
+                <span onClick={() => handleRedirect("/wishList")}>❤️</span>
               )}
               {role === "buyer" && (
-                <span onClick={() => handleRedirect("/cart")}>🛒</span>
+                <span onClick={() => handleRedirect("/panier")}>🛒</span>
               )}
               {role === "buyer" && (
                 <span onClick={() => handleRedirect("/buyerProfile")}>👤</span>
