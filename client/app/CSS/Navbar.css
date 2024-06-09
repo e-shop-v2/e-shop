@@ -1,64 +1,64 @@
 #navb .header {
-    position: fixed;
-    width: 100%;
-    top: 0;
-    z-index: 10;
-    background-color: #fff;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 #navb .top-banner a {
-    color: white;
-    text-decoration: underline;
+  color: white;
+  text-decoration: underline;
 }
 
 #navb .main-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 20px;
-    background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  background-color: #fff;
 }
 
 #navb .main-nav .logo {
-    font-size: 24px;
-    font-weight: bold;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 #navb .main-nav .nav-links {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 #navb .main-nav .nav-links a {
-    margin-left: 50px;
-  margin-right: 90px;
-    text-decoration: none;
-    color: black;
+  margin-left: 50px;
+margin-right: 90px;
+  text-decoration: none;
+  color: black;
 }
 #navb .main-nav .nav-links a:hover {
-    text-decoration: underline; 
-    color: rgb(88, 86, 86);
+  text-decoration: underline; 
+  color: rgb(88, 86, 86);
 }
 
 #navb .main-nav .icons {
-    display: flex;
-    align-items: center;
-    margin-right: 130px;
+  display: flex;
+  align-items: center;
+  margin-right: 130px;
 
 
 }
 
 #navb .main-nav .icons span {
-    padding-left: 14px;
-    margin-right: -5px;
-    font-size: 18px;
-    
+  padding-left: 14px;
+  margin-right: -5px;
+  font-size: 18px;
+  
 }
 #navb .icon-image{
-    width: 32px;
-    height: 25px;
+  width: 32px;
+  height: 25px;
 }
 #navb .nav-input{
-    margin-right: 110px;
+  margin-right: 110px;
 }

@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -6,12 +5,10 @@ import "./flash.css";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
+
 const FlashSales = () => {
   const router = useRouter();
-    // const [addedToCart, setAddedToCart] = useState({});
-    // const [addedToFavorites, setAddedToFavorites] = useState({});
   const { buyer } = useAuth();
-
   const [data, setData] = useState([]);
 
   useEffect(() => {
@@ -28,52 +25,48 @@ const FlashSales = () => {
       }
     }
 
-
     fetchData();
   }, []);
-  console.log(data);
+
+  useEffect(() => {
+    console.log("User role:", buyer.role);
+  }, [buyer]);
 
   const addToPanier = (id: number) => {
     const data = {
       BuyerId: buyer.id,
       ProductId: id,
     };
-    console.log(data);
 
     axios
       .post("http://localhost:8080/api/panier/usercart", data)
       .then((res) => {
-        console.log("hola", res);
+        console.log("Added to cart", res);
       })
       .catch((err) => {
-        console.error("post err", err);
+        console.error("Post error", err);
       });
   };
+
   const addToFavorites = (id: number) => {
     const data = {
       BuyerId: buyer.id,
       ProductId: id,
     };
-    console.log(data);
+
     axios
       .post("http://localhost:8080/api/wishList/userWishList", data)
       .then((res) => {
-        console.log("favorites", res);
+        console.log("Added to favorites", res);
       })
       .catch((err) => {
-        console.error("post err", err);
+        console.error("Post error", err);
       });
   };
+
   const handleImageClick = (id: number) => {
-    //The product list folder is inside the Components folder.
-    router.push(`/components/productList/${id}`), console.log("hol");
+    router.push(`/components/productList/${id}`);
   };
-
-
-    fetchData();
-
- 
-  }, []);
 
   return (
     <div>
@@ -90,33 +83,31 @@ const FlashSales = () => {
         <h2 className="top-subtitle">This Month</h2>
       </div>
       <div className="flash-sales">
-        {data.map((el) => (
+        {data.map((el: any) => (
           <div className="products" key={el.id}>
             <div className="product">
-
               <img
-                onClick={() => {
-                  handleImageClick(el.id);
-                  console.log("hello");
-                }}
+                onClick={() => handleImageClick(el.id)}
                 src={el.image}
                 alt={el.name}
               />
-              {/* <span className="discount">{getRandomDiscount()}</span> */}
               <h3>{el.name}</h3>
-              <button
-                onClick={() => addToPanier(el.id)}
-                disabled={addToPanier[el.id]}
-              >
-                {addToPanier[el.id] ? "Added to Cart" : "Add To Cart"}
-              </button>
-              <span className="icon-heart2" onClick={() => addToFavorites(el)}>
-                ❤️
-              </span>
-
-              <img src={el.image} alt={el.name} />
-              <h3>{el.name}</h3>
-
+              {buyer.role === "buyer" && (
+                <>
+                  <button
+                    onClick={() => addToPanier(el.id)}
+                    disabled={addToPanier[el.id]}
+                  >
+                    {addToPanier[el.id] ? "Added to Cart" : "Add To Cart"}
+                  </button>
+                  <span
+                    className="icon-heart2"
+                    onClick={() => addToFavorites(el.id)}
+                  >
+                    ❤️
+                  </span>
+                </>
+              )}
               <p className="price-color">
                 <span>${el.price}</span>
               </p>
