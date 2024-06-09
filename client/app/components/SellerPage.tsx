@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import '../CSS/SellerPage.css';
 import { ToastContainer, toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 import 'react-toastify/dist/ReactToastify.css';
 
 const SellerPage = () => {
@@ -19,6 +20,7 @@ const SellerPage = () => {
   const [file2, setFile2] = useState<File | null>(null);
   const [file3, setFile3] = useState<File | null>(null);
   const [stock, setStock] = useState<string>("");
+  const router = useRouter();
 
   const handleStockChange = (e) => {
     if (Number(e.target.value) < 0) {
@@ -67,6 +69,9 @@ const SellerPage = () => {
       .then((response) => {
         console.log("result", response);
         toast.success("Product added successfully!");
+        setTimeout(() => {
+          router.push('/home');
+        }, 2000); 
       })
       .catch((error) => {
         console.log("result", error);
