@@ -18,8 +18,9 @@ const Navbar = () => {
   const { logOut } = useAuth();
 
   const signOut = () => {
-    logOut();
-    setRole("");
+  logOut();
+  setRole('')
+  
   };
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -28,17 +29,21 @@ const Navbar = () => {
       setRole(decodedToken.role);
     }
     console.log(token);
+    
+    
   });
 
   const handleRedirect = (path: string) => {
-    router.push(path);
-  };
+   router.push(path);
 
-  const isAdmin = role === "admin"
+ };
+ const isAdmin = role === "admin";
+
  
-  if (isAdmin) {
-    return null
-  }
+ if (isAdmin) {
+   return null; 
+ }
+
 
   return (
     <div id="navb">
@@ -72,10 +77,10 @@ const Navbar = () => {
             <input type="text" placeholder="What are you looking for?" />
             <div className="icons">
               {role === "buyer" && (
-                <span onClick={() => handleRedirect("/wishList")}>❤️</span>
+                <span onClick={() => handleRedirect("/favorites")}>❤️</span>
               )}
               {role === "buyer" && (
-                <span onClick={() => handleRedirect("/panier")}>🛒</span>
+                <span onClick={() => handleRedirect("/cart")}>🛒</span>
               )}
               {role === "buyer" && (
                 <span onClick={() => handleRedirect("/buyerProfile")}>👤</span>
