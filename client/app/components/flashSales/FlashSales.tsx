@@ -70,10 +70,7 @@ const FlashSales = () => {
   };
 
 
-    fetchData();
 
- 
-  }, []);
 
   return (
     <div>
