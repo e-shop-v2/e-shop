@@ -80,7 +80,7 @@ const Navbar = () => {
                 <span onClick={() => handleRedirect("/favorites")}>❤️</span>
               )}
               {role === "buyer" && (
-                <span onClick={() => handleRedirect("/cart")}>🛒</span>
+                <span onClick={() => handleRedirect("/panier")}>🛒</span>
               )}
               {role === "buyer" && (
                 <span onClick={() => handleRedirect("/buyerProfile")}>👤</span>
