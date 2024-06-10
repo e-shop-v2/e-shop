@@ -10,7 +10,6 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
 
-
 .add-product-header {
   background-color: #0d1b2a;
   color: white;
@@ -127,4 +126,7 @@
 .add-form-group select:focus {
   border-color: #007bff;
   box-shadow: 0 0 10px rgba(0, 123, 255, 0.5);
+}
+#categ{
+  width: 150px;
 }
