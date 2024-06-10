@@ -32,7 +32,12 @@ const Login = () => {
         router.push("/sellerProfile"); // Redirect to seller profile
       } else if (decodedToken.role === "buyer") {
         router.push("/home"); // Redirect to buyer profile
-      } else {
+      }
+      else if (decodedToken.role === "admin"){
+        router.push("/buyerProfile")
+      } 
+      
+      else {
         // Handle other roles or scenarios if needed
         console.log("Unknown role:", decodedToken.role);
       }

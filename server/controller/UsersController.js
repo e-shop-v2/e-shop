@@ -4,12 +4,15 @@ const db = require("../database/index");
 const getAllUsers = async (req, res) => {
   try {
     const buyers = await db.Buyer.findAll();
+    console.log("Buyers fetched successfully");
+
     const sellers = await db.Seller.findAll();
+    console.log("Sellers fetched successfully");
 
     res.status(200).json({ buyers, sellers });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: error.message });
+    res.status(500).json({ error: error });
   }
 };
 /// retrieve a certain user by his email (we search him in both tables)
