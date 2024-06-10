@@ -13,9 +13,9 @@ import {
 import axios from "axios";
 import "./cats.css";
 import { useRouter } from "next/navigation";
-// import StarRating from '.././rating';
+
 const Categories = () => {
-  const router =useRouter()
+  const router = useRouter();
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [products, setProducts] = useState<any[]>([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -37,15 +37,16 @@ const Categories = () => {
     setSelectedProduct(product);
   };
 
-    const handleImageClick = (id:number) => {
-      router.push(`/components/productList/${id}`);
-    };
+  const handleImageClick = (id: number) => {
+    router.push(`/components/productList/${id}`);
+  };
 
   useEffect(() => {
     if (selectedCategory) {
       fetchProductsByCategory(selectedCategory);
     }
   }, [selectedCategory]);
+
   return (
     <div className="bouallug-categories">
       <div className="bouallug-category-heading">
@@ -86,6 +87,7 @@ const Categories = () => {
                   ? faHeadphones
                   : faGamepad
               }
+              className="fa-icon"
             />
             <span>{category}</span>
           </div>

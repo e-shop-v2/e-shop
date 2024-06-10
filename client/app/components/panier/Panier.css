@@ -1,86 +1,160 @@
 .panier-container {
-    padding: 20px;
-    max-width: 900px;
-    margin: auto;
-    margin-top: 80px;
-  }
-  
-  .breadcrumb {
-    font-size: 14px;
-    color: #999;
-    margin-bottom: 20px;
-  }
-  
-  h2 {
-    margin-bottom: 20px;
-  }
-  
-  .cart-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-  }
-  
-  .cart-table th, .cart-table td {
-    border: 1px solid #eee;
-    padding: 10px;
-    text-align: left;
-  }
-  
-  .product-image {
-    width: 50px;
-    height: auto;
-    margin-right: 10px;
-  }
-  
-  .return-button {
-    display: inline-block;
-    margin-bottom: 20px;
-    padding: 10px 20px;
-    background-color: #f5f5f5;
-    border: 1px solid #ddd;
-    cursor: pointer;
-  }
-  
-  .coupon-container {
-    display: flex;
-    margin-bottom: 20px;
-  }
-  
-  .coupon-input {
-    flex: 1;
-    padding: 10px;
-    border: 1px solid #ddd;
-    margin-right: 10px;
-  }
-  
-  .apply-coupon {
-    padding: 10px 20px;
-    background-color: #64b7ff;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
-  
-  .cart-total {
-    border: 1px solid #eee;
-    padding: 20px;
-  }
-  
-  .cart-total h3 {
-    margin-bottom: 20px;
-  }
-  
-  .cart-total p {
-    margin: 5px 0;
-  }
-  
-  .checkout-button {
-    display: block;
-    width: 100%;
-    padding: 10px 0;
-    background-color: #64afff;
-    color: white;
-    border: none;
-    cursor: pointer;
-  }
+  padding: 20px;
+  max-width: 900px;
+  margin: auto;
+  margin-top: 80px;
+}
+
+.breadcrumb {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin-bottom: 20px;
+}
+
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+}
+
+.cart-table th,
+.cart-table td {
+  border: 1px solid #eee;
+  padding: 10px;
+  text-align: left;
+}
+
+.product-image {
+  width: 50px;
+  height: auto;
+  margin-right: 10px;
+}
+
+.return-button {
+  display: inline-block;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #f5f5f5;
+  border: 1px solid #ddd;
+  cursor: pointer;
+}
+
+.coupon-container {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.coupon-input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ddd;
+  margin-right: 10px;
+}
+
+.apply-coupon {
+  padding: 10px 20px;
+  background-color: #64b7ff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.apply-coupon:disabled {
+  background-color: #ccc; /* Grey out the button */
+  cursor: not-allowed; /* Show not-allowed cursor */
+}
+
+.cart-total {
+  border: 1px solid #eee;
+  padding: 20px;
+}
+
+.cart-total h3 {
+  margin-bottom: 20px;
+}
+
+.cart-total p {
+  margin: 5px 0;
+}
+
+.checkout-button {
+  display: block;
+  width: 100%;
+  padding: 10px 0;
+  background-color: #64afff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+/* Confirmation Dialog CSS */
+.confirmation-dialog {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 9999;
+  width: 300px;
+}
+
+.confirmation-content {
+  text-align: center;
+}
+
+.confirmation-buttons {
+  margin-top: 20px;
+}
+
+.confirm-button,
+.cancel-button {
+  padding: 10px 20px;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.confirm-button {
+  background-color: #64b7ff;
+  color: #fff;
+  border: none;
+}
+
+.cancel-button {
+  background-color: #f5f5f5;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.delete-button {
+  box-shadow: inset 0px 0px 16px -1px #f29c93;
+  background: linear-gradient(to bottom, #fe1a00 5%, #ce0100 100%);
+  background-color: #fe1a00;
+  border-radius: 5px;
+  border: 2px solid #d83526;
+  display: inline-block;
+  cursor: pointer;
+  color: #ffffff;
+  font-family: Georgia;
+  font-size: 19px;
+  font-weight: bold;
+  padding: 8px 14px;
+  text-decoration: none;
+  text-shadow: -50px 36px 50px #b23e35;
+}
+
+.delete-button:hover {
+  background: linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
+  background-color: #ce0100;
+}
+
+.delete-button:active {
+  position: relative;
+  top: 1px;
+}

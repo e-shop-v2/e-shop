@@ -5,33 +5,52 @@ import "./wish.css";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useAuth } from "../context/AuthContext";
+
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState<any>([]);
   const [refre, setRefre] = useState<any>(false);
+  const [showConfirmation, setShowConfirmation] = useState<boolean>(false);
+  const [productIdToDelete, setProductIdToDelete] = useState<string | null>(null);
   const router = useRouter();
   const { buyer } = useAuth();
+
   useEffect(() => {
     axios
       .get(`http://localhost:8080/api/wishlist/userWishList/${buyer.id}`)
       .then((res) => {
-        console.log(res.data[0].Products,"wishlist");
+        console.log(res.data[0].Products, "wishlist");
         setWishlist(res.data[0].Products);
       })
       .catch((err) => {
         console.error(err);
       });
   }, [refre, buyer.id]);
-  const remove = (productId) => {
-    axios
-      .delete(`http://localhost:8080/api/wishlist/del/${productId}`)
-      .then((response) => {
-        console.log(response);
-        setRefre(!refre);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+
+  const confirmDelete = () => {
+    if (productIdToDelete) {
+      axios
+        .delete(`http://localhost:8080/api/wishlist/del/${productIdToDelete}`)
+        .then((response) => {
+          console.log(response);
+          setRefre(!refre);
+          closeConfirmationDialog();
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
   };
+
+  const openConfirmationDialog = (productId: string) => {
+    setProductIdToDelete(productId);
+    setShowConfirmation(true);
+  };
+
+  const closeConfirmationDialog = () => {
+    setShowConfirmation(false);
+    setProductIdToDelete(null);
+  };
+
   return (
     <div>
       <div className="favorites-container">
@@ -60,7 +79,7 @@ const Wishlist = () => {
                   <b>{item.price} $</b>
                 </td>
                 <td>
-                  <button onClick={() => remove(index)}>Remove</button>
+                  <button onClick={() => openConfirmationDialog(item.id)}>Remove</button>
                 </td>
               </tr>
             ))}
@@ -72,6 +91,22 @@ const Wishlist = () => {
           </button>
         </div>
       </div>
+
+      {showConfirmation && (
+        <div className="confirmation-dialog">
+          <div className="confirmation-content">
+            <p>Are you sure you want to remove this product?</p>
+            <div className="confirmation-buttons">
+              <button onClick={confirmDelete} className="confirm-button">
+                Confirm
+              </button>
+              <button onClick={closeConfirmationDialog} className="cancel-button">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

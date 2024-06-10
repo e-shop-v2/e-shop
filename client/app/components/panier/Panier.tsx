@@ -4,12 +4,20 @@ import "./Panier.css";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
+
 const Panier = () => {
   const [panier, setPanier] = useState<any>([]);
   const [total, setTotal] = useState<any>(0);
   const [refre, setRefre] = useState<any>(false);
+  const [showConfirmation, setShowConfirmation] = useState<boolean>(false); 
   const { buyer } = useAuth();
   const router = useRouter();
+  const [productIdToDelete, setProductIdToDelete] = useState<string | null>(null); 
+  const [couponInput, setCouponInput] = useState<string>(""); // coupon input name 
+  const [discountPercentage, setDiscountPercentage] = useState<number>(0); // store percentage
+  const [isCouponApplied, setIsCouponApplied] = useState<boolean>(false); // track if coupon is applied
 
   useEffect(() => {
     console.log(buyer.id);
@@ -28,7 +36,8 @@ const Panier = () => {
       .catch((err) => {
         console.error(err);
       });
-  }, [ buyer.id,refre]);
+  }, [buyer.id, refre]);
+
   const handleQuantityChange = (index, newQuantity) => {
     const updatedProducts = [...panier];
     updatedProducts[index].quantity = newQuantity;
@@ -41,16 +50,51 @@ const Panier = () => {
     setPanier(updatedProducts);
     setTotal(newTotal);
   };
-  const remove = (productId) => {
-    axios
-      .delete(`http://localhost:8080/api/panier/del/${productId}`)
-      .then((response) => {
-        console.log(response);
-        setRefre(!refre);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+
+  const confirmDelete = () => {
+    if (productIdToDelete) {
+      axios
+        .delete(`http://localhost:8080/api/panier/del/${productIdToDelete}`)
+        .then((response) => {
+          console.log(response);
+          setRefre(!refre);
+          closeConfirmationDialog()
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    }
+  };
+
+  const openConfirmationDialog = (productId: string) => {
+    setProductIdToDelete(productId);
+    setShowConfirmation(true);
+  };
+
+  const closeConfirmationDialog = () => {
+    setShowConfirmation(false);
+    setProductIdToDelete(null);
+  };
+
+  const applyCoupon = () => {
+    if (couponInput === "fraj") {
+      toast.success("Valid coupon");
+
+      // gen a random discount percentage (10%, 20%, or 30%)
+      const randomPercentage = [10, 20, 30][Math.floor(Math.random() * 3)];
+      setDiscountPercentage(randomPercentage);
+
+      // calculate the discounted total
+      const discountFactor = (100 - randomPercentage) / 100;
+      let discountedTotal = total * discountFactor;
+      discountedTotal = Math.floor(discountedTotal);
+      setTotal(discountedTotal);
+
+      // the coupon as applied
+      setIsCouponApplied(true);
+    } else {
+      toast.error("Invalid coupon");
+    }
   };
 
   return (
@@ -74,7 +118,11 @@ const Panier = () => {
             {panier.map((el, index) => (
               <tr key={el.id}>
                 <td>
-                  <img src={el.image} alt={el.name} className="product-image" />
+                  <img
+                    src={el.image}
+                    alt={el.name}
+                    className="product-image"
+                  />
                   {el.name}
                 </td>
                 <td>${el.price}</td>
@@ -90,12 +138,13 @@ const Panier = () => {
                   />
                 </td>
                 <td>${el.price * (el.quantity || 1)}</td>
-                <td
-                  onClick={() => {
-                    remove(el.id);
-                  }}
-                >
-                  X
+                <td>
+                  <button
+                    onClick={() => openConfirmationDialog(el.id)}
+                    className="delete-button"
+                  >
+                    X
+                  </button>
                 </td>
               </tr>
             ))}
@@ -109,17 +158,38 @@ const Panier = () => {
             type="text"
             placeholder="Coupon Code"
             className="coupon-input"
+            value={couponInput}
+            onChange={(e) => setCouponInput(e.target.value)}
           />
-          <button className="apply-coupon">Apply Coupon</button>
+          <button className="apply-coupon" onClick={applyCoupon} disabled={isCouponApplied}>
+            Apply Coupon
+          </button>
         </div>
         <div className="cart-total">
           <h3>Cart Total</h3>
           <p>Subtotal: ${total}</p>
-          <p>Shipping: Free</p>
+          <p>Discount: {discountPercentage}%</p>
           <p>Total: ${total}</p>
           <button className="checkout-button">Proceed to checkout</button>
         </div>
       </div>
+
+      {showConfirmation && (
+        <div className="confirmation-dialog">
+          <div className="confirmation-content">
+            <p>Are you sure you want to delete this product?</p>
+            <div className="confirmation-buttons">
+              <button onClick={confirmDelete} className="confirm-button">
+                Confirm
+              </button>
+              <button onClick={closeConfirmationDialog} className="cancel-button">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+      <ToastContainer />
     </div>
   );
 };
