@@ -98,7 +98,7 @@ const SellerPage = () => {
           <div className="add-form-group">
             <label>Category:</label>
             <select name="category-dropdown" onChange={(e) => setCategory(e.target.value)} required>
-              <option value="">Select Category</option>
+              <option id='categ' value="">Select Category</option>
               <option value="Phones">Phones</option>
               <option value="Computers">Computers</option>
               <option value="SmartWatch">SmartWatch</option>
