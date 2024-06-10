@@ -14,15 +14,16 @@ const Login = () => {
   const router = useRouter();
   const { loginAction } = useAuth();
 
-  const handleLogin = async () => {
+ const handleLogin = async () => {
     try {
       const payload = { email: emailOrPhone, password };
-      await loginAction(payload); // Use loginAction from the context
+      await loginAction(payload); 
     } catch (error) {
       console.error("Login error", error);
       alert("Login failed. Please check your credentials and try again.");
     }
   };
+
 
   return (
     <div id="login">
