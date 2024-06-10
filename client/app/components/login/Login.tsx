@@ -17,7 +17,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const payload = { email: emailOrPhone, password };
-      await loginAction(payload); // Use loginAction from the context
+      await loginAction(payload); 
     } catch (error) {
       console.error("Login error", error);
       alert("Login failed. Please check your credentials and try again.");
