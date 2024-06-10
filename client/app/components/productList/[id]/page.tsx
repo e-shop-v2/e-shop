@@ -3,13 +3,19 @@ import { usePathname } from "next/navigation";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./one.css";
+import { toast , ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useAuth } from "../../context/AuthContext";
+import { useRouter } from "next/navigation";
 
 const One = () => {
   const [product, setProduct] = useState<any>({});
   const [quantity, setQuantity] = useState<number>(1);
-  const [mainImage, setMainImage] = useState<string>(""); // state added for main image to be displayed
+  const { buyer } = useAuth();
+  const [mainImage, setMainImage] = useState<string>("");
   const pathname = usePathname();
   const id = pathname.slice(pathname.length - 1);
+  const router = useRouter();
 
   useEffect(() => {
     if (id) {
@@ -17,7 +23,6 @@ const One = () => {
         .get(`http://localhost:8080/api/products/${id}`)
         .then((response) => {
           setProduct(response.data);
-          //main image set as the first image in the product images array
           setMainImage(response.data.image);
         })
         .catch((error) => {
@@ -26,10 +31,34 @@ const One = () => {
     }
   }, [id]);
 
-  // added function to handle image click and set the image in the middle to the one clicked on
-  const handleImageClick =(image: string) => {
-    setMainImage(image)
-  }
+  const addToPanier = (id: number) => {
+    const data = {
+      BuyerId: buyer.id,
+      ProductId: id,
+    };
+
+    return axios.post("http://localhost:8080/api/panier/usercart", data);
+  };
+
+  const handleImageClick = (image: string) => {
+    setMainImage(image);
+  };
+
+  const handleBuyNow = (id: number) => {
+    addToPanier(id)
+      .then((res) => {
+        console.log("Added to cart", res);
+        toast.success("Added to Cart Successfully!");
+
+        setTimeout(() => {
+          router.push("/panier");
+        }, 1500);
+      })
+      .catch((err) => {
+        console.error("Post error", err);
+        toast.error("Failed to add to cart.");
+      });
+  };
 
   return (
     <div>
@@ -66,9 +95,7 @@ const One = () => {
           </div>
           <div className="new-product-details">
             <h1>{product.name}</h1>
-            {/* Other product details */}
             <div className="new-product-options">
-              {/* Product options */}
               <div className="new-product-colors">
                 <label>Colours:</label>
                 <button className="new-color-option new-color-red"></button>
@@ -103,7 +130,7 @@ const One = () => {
             </div>
             <button
               className="new-buy-now-button"
-              //  onClick={() => butnow(product)}
+              onClick={() => handleBuyNow(product.id)}
             >
               Buy Now
             </button>
@@ -120,7 +147,7 @@ const One = () => {
           </div>
         </div>
       </div>
-      <div>{/* <RelatedItems category={product.category} /> */}</div>
+      <ToastContainer />
     </div>
   );
 };

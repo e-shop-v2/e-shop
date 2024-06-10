@@ -1,7 +1,9 @@
-"use client";
+// Import React and other necessary components
 import React from "react";
+import BarChart from "./BarChart"; // Import the new BarChart component
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
 
+// Define types for Customer, Customers, Product, and Order
 type Customer = {
   email: string;
   name: string;
@@ -29,6 +31,7 @@ type Order = {
   total: number;
 };
 
+// Define props interface for DashboardView component
 interface DashboardViewProps {
   customers: Customers;
   products: Product[];
@@ -37,6 +40,7 @@ interface DashboardViewProps {
   handleViewChange: (view: string) => void;
 }
 
+// Define DashboardView component
 const DashboardView = ({
   customers,
   products,
@@ -44,21 +48,40 @@ const DashboardView = ({
   orders,
   handleViewChange,
 }: DashboardViewProps) => {
+  // Calculate total number of customers and orders
   const totalCustomers = customers.buyers.length + customers.sellers.length;
   const totalOrders = orders.length;
 
+  // Sort products by stock and get top 5 products
+  const topProductsByStock = products.sort((a, b) => b.stock - a.stock).slice(0, 5);
+
+  // Define data for the BarChart component
+  const barChartData = {
+    labels: ["2022", "2023", "2024", "2024"],
+    datasets: [
+      {
+        label: "Users Gained",
+        data: [50, 100, 150, 200, 250], 
+        backgroundColor: "rgba(75, 192, 192, 0.6)",
+        borderColor: "rgba(75, 192, 192, 1)",
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  // Define data for the PieChart component
   const pieData = [
     { name: "Buyers", value: customers.buyers.length },
     { name: "Sellers", value: customers.sellers.length },
   ];
   const COLORS = ["#0088FE", "#FF8042"];
 
-  const topProductsByStock = products.sort((a, b) => b.stock - a.stock).slice(0, 5);
-
   return (
     <>
+      {/* Dashboard header */}
       <header className="admin-header-dashboard">
         <h1 className="admin-main-title">Dashboard</h1>
+        {/* Statistics */}
         <div className="admin-stats">
           <div className="admin-stat-container">
             <h3>{totalCustomers}</h3>
@@ -74,7 +97,9 @@ const DashboardView = ({
           </div>
         </div>
       </header>
+      {/* Main content section */}
       <section className="admin-main-section">
+        {/* Top stock */}
         <div className="admin-top-stock">
           <div className="admin-top-stock-header">
             <h2 className="admin-red-title">Stock Leaders</h2>
@@ -106,7 +131,9 @@ const DashboardView = ({
               ))}
             </tbody>
           </table>
+          
         </div>
+        {/* Role stats chart */}
         <section className="admin-role-stats-chart">
           <div className="admin-role-stats-header">
             <h3 className="admin-red-title">Role Stats</h3>
@@ -117,6 +144,7 @@ const DashboardView = ({
               See More
             </button>
           </div>
+          {/* Pie chart */}
           <PieChart width={200} height={200}>
             <Pie
               data={pieData}
@@ -134,6 +162,14 @@ const DashboardView = ({
             </Pie>
             <Tooltip />
           </PieChart>
+        </section>
+        {/* User growth chart */}
+        <section className="admin-role-stats-chart">
+          <div className="admin-role-stats-header">
+            <h3 className="admin-red-title">User Growth</h3>
+          </div>
+          {/* Bar chart */}
+          <BarChart chartData={barChartData} />
         </section>
       </section>
     </>

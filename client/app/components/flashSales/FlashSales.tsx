@@ -37,7 +37,7 @@ const FlashSales = () => {
     console.log("User role:", buyer.role);
   }, [buyer]);
 
-  const addToPanier = (id: number) => {
+const addToPanier = (id: number) => {
     const data = {
       BuyerId: buyer.id,
       ProductId: id,
@@ -98,6 +98,7 @@ const FlashSales = () => {
         />
         <h2 className="top-subtitle">This Month</h2>
       </div>
+      <div className="caroussa-container">
       <Carousel responsive={responsive}>
         {/* Below we wrap our products in the carousel */}
         {data.map((el: any) => (
@@ -133,6 +134,7 @@ const FlashSales = () => {
           </div>
         ))}
       </Carousel>
+      </div>
       <ToastContainer />
     </div>
   );

@@ -60,7 +60,7 @@
 }
 
 .bouallug-title-category {
-  margin-left: -740px;
+  margin-left: -1040px;
 }
 
 .bouallug-category-heading h2 {
@@ -120,4 +120,8 @@
 
 .bouallug-product:hover button {
   display: block;
+}
+.bouallug-category .fa-icon {
+  font-size: 2rem; /* Adjust the size as needed */
+  padding: 10px; /* Adjust the padding as needed */
 }
