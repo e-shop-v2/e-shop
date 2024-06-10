@@ -5,7 +5,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./carroussa.css";
 const CarouselComponent = () => {
   return (
-    <div>
+    <div className="lfou9">
+      <div className="sideBar" style={{ marginRight: "30px" }}>
+        <ul>
+          <li>Man's Clothing</li>
+          <li>Women's Clothing </li>
+          <li> Electronics</li>
+          <li>Medecine</li>
+          <li>Sport</li>
+          <li>toys</li>
+          <li>Health And Beauty</li>
+          <li>Grociries</li>
+          <li>Pets</li>
+        </ul>
+      </div>
       <Carousel className="custom-carousel">
         <Carousel.Item>
           <div className="video-container">

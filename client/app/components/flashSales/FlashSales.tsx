@@ -109,7 +109,7 @@ const FlashSales = () => {
                 alt={el.name}
               />
               <h3>{el.name}</h3>
-              <Rating itemId={el.id} />
+              <Rating itemId={el.rating} />
               {buyer.role === "buyer" && (
                 <>
                   <button

@@ -9,15 +9,15 @@ router.post("/create", productController.createProduct);
 // get all products
 router.get("/getAll", productController.getAllProducts);
 // get a product by the sales numbers
-router.get('/sales',productController.getBestSellers)
+router.get("/sales", productController.getBestSellers);
 // get one product
 router.get("/:id", productController.getProductById);
 //get product by category
-router.get('/category/:category',productController.getProductsByCategory)
+router.get("/category/:category", productController.getProductsByCategory);
 
 // update a product (protected because its a seller feature)
 router.put("/:name", productController.updateProduct);
-
+router.post("/products/:productId/rating", productController.addRating);
 // delete a produt (protected because its a seller feature)
 router.delete("/del/:name", productController.deleteProduct);
 module.exports = router;
