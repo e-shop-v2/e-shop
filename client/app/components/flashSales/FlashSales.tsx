@@ -5,6 +5,7 @@ import "./flash.css";
 import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
+import Rating from "../rating/Rating";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import Carousel from "react-multi-carousel"; // adding multi carousel for browsing through multiple products
@@ -109,6 +110,7 @@ const addToPanier = (id: number) => {
                 alt={el.name}
               />
               <h3>{el.name}</h3>
+              <Rating itemId={el.rating} />
               {buyer.role === "buyer" && (
                 <>
                   <button
