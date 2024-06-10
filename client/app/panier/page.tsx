@@ -1,9 +1,10 @@
 import React from "react";
-import BuyerEditProfile from "../components/BuyerEditProfile"
+import Panier from "../components/panier/Panier";
+
 const page = () => {
   return (
     <div>
-<BuyerEditProfile/>
+      <Panier />
     </div>
   );
 };

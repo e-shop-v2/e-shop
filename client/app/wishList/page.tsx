@@ -1,9 +1,10 @@
 import React from "react";
-import BuyerEditProfile from "../components/BuyerEditProfile"
+import Wishlist from "../components/wishList/Wishlist";
+
 const page = () => {
   return (
     <div>
-<BuyerEditProfile/>
+      <Wishlist />
     </div>
   );
 };

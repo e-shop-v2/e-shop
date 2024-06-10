@@ -12,8 +12,10 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import axios from "axios";
 import "./cats.css";
+import { useRouter } from "next/navigation";
 // import StarRating from '.././rating';
 const Categories = () => {
+  const router =useRouter()
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const [products, setProducts] = useState<any[]>([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
@@ -35,9 +37,9 @@ const Categories = () => {
     setSelectedProduct(product);
   };
 
-  //   const handleImageClick = (id:integer) => {
-  //     navigate(`/OneProduct`, { state: { id: id } });
-  //   };
+    const handleImageClick = (id:number) => {
+      router.push(`/components/productList/${id}`);
+    };
 
   useEffect(() => {
     if (selectedCategory) {
@@ -100,7 +102,7 @@ const Categories = () => {
               <img
                 src={product.image}
                 alt={product.name}
-                // onClick={() => handleImageClick(product.id)}
+                onClick={() => handleImageClick(product.id)}
               />
               <h3>{product.name}</h3>
               <p>${product.price}</p>
