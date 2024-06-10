@@ -1,15 +1,33 @@
 const Rating = require("../models/stars.js");
 
 module.exports = {
-  submitRating: async (req, res) => {
-    const { itemId, rating } = req.body;
+  addRating: async (req, res) => {
     try {
-      await Rating.create({ itemId, rating });
-      res.status(201).send("Rating submitted successfully");
+      const itemIds = req.params.itemIds;
+      const newRate = req.body.rating;
+
+      const product = await db.Product.findByPk(itemIds);
+
+      if (!product) {
+        return res.status(404).send("Product not found");
+      }
+      const currRating = product.rating;
+      const currNumOfRates = product.numOfRating;
+
+      const updatedNumOfRatings = currNumOfRates + 1;
+
+      await product.update({
+        rating: newRate,
+        numOfRating: updatedNumOfRatings,
+      });
+
+      res.status(200).json(product);
     } catch (error) {
-      res.status(500).send("Server error");
+      console.error(error.message);
+      res.status(500).send(error);
     }
   },
+
   getAverageRating: async (req, res) => {
     const { itemId } = req.params;
     try {

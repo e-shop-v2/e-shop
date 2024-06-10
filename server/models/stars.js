@@ -1,19 +1,13 @@
 module.exports = (sequelize, DataTypes) => {
-  const Rating = sequelize.define(
-    "Rating",
-    {
-      itemId: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      rating: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-      },
+  const Rating = sequelize.define("Rating", {
+    numOfRating: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
     },
-    {
-      timestamps: false,
-    }
-  );
+    rating: {
+      type: DataTypes.FLOAT,
+      allowNull: true,
+    },
+  });
   return Rating;
 };
