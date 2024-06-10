@@ -6,6 +6,10 @@ import axios from "axios";
 import { useAuth } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
 import Rating from "../rating/Rating";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Carousel from "react-multi-carousel"; // adding multi carousel for browsing through multiple products
+import "react-multi-carousel/lib/styles.css";
 
 const FlashSales = () => {
   const router = useRouter();
@@ -43,9 +47,11 @@ const FlashSales = () => {
       .post("http://localhost:8080/api/panier/usercart", data)
       .then((res) => {
         console.log("Added to cart", res);
+        toast.success("Added to Cart Successfully!");
       })
       .catch((err) => {
         console.error("Post error", err);
+        toast.error("Failed to add to cart.");
       });
   };
 
@@ -59,14 +65,23 @@ const FlashSales = () => {
       .post("http://localhost:8080/api/wishList/userWishList", data)
       .then((res) => {
         console.log("Added to favorites", res);
+        toast.success("Added to Favorites Successfully!");
       })
       .catch((err) => {
         console.error("Post error", err);
+        toast.error("Failed to add to favorites.");
       });
   };
 
   const handleImageClick = (id: number) => {
     router.push(`/components/productList/${id}`);
+  };
+
+  const responsive = {
+   desktop: {
+      breakpoint: { max: 1920, min: 1024 }, 
+      items: 4, // since we want 4 items to be displayed as default
+    }
   };
 
   return (
@@ -83,7 +98,8 @@ const FlashSales = () => {
         />
         <h2 className="top-subtitle">This Month</h2>
       </div>
-      <div className="flash-sales">
+      <Carousel responsive={responsive}>
+        {/* Below we wrap our products in the carousel */}
         {data.map((el: any) => (
           <div className="products" key={el.id}>
             <div className="product">
@@ -116,7 +132,8 @@ const FlashSales = () => {
             </div>
           </div>
         ))}
-      </div>
+      </Carousel>
+      <ToastContainer />
     </div>
   );
 };
