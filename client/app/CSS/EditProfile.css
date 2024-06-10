@@ -147,7 +147,7 @@ body {
   }
   .edit-profile-form .form-group2 input[type="text"]
   {
-    width: calc(90% - 20px); /* Adjusted width for half size inputs */
+    width: calc(90% - 20px);
     padding: 11px;
     border: 1px solid #ccc;
     border-radius: 5px;

@@ -1,11 +1,12 @@
 "use client"
-import React ,{ useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import '../CSS/SellerPage.css';
 import { ToastContainer, toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 import 'react-toastify/dist/ReactToastify.css';
 
-const SellerPage  = () => {
+const SellerPage = () => {
   const [name, setName] = useState<string>("");
   const [price, setPrice] = useState<string>("");
   const [category, setCategory] = useState<string>("");
@@ -19,6 +20,7 @@ const SellerPage  = () => {
   const [file2, setFile2] = useState<File | null>(null);
   const [file3, setFile3] = useState<File | null>(null);
   const [stock, setStock] = useState<string>("");
+  const router = useRouter();
 
   const handleStockChange = (e) => {
     if (Number(e.target.value) < 0) {
@@ -29,7 +31,7 @@ const SellerPage  = () => {
     }
   };
 
-  const uploadPhoto = (e , file: File | null, imageSetter: (url: string) => void) => {
+  const uploadPhoto = (e, file: File | null, imageSetter: (url: string) => void) => {
     e.preventDefault();
     if (!file) {
       toast.error("No file selected.");
@@ -64,19 +66,22 @@ const SellerPage  = () => {
       image3: image3,
       stock: stock
     })
-    .then((response) => { 
-      console.log("result", response); 
-      toast.success("Product added successfully!");
-    })
-    .catch((error) => { 
-      console.log("result", error); 
-      toast.error("An error occurred while adding the product.");
-    });
+      .then((response) => {
+        console.log("result", response);
+        toast.success("Product added successfully!");
+        setTimeout(() => {
+          router.push('/home');
+        }, 2000); 
+      })
+      .catch((error) => {
+        console.log("result", error);
+        toast.error("An error occurred while adding the product.");
+      });
   }
 
   return (
     <div>
-  
+
       <div className="add-product-container">
         <div className="add-product-header">
           <h1>Add Product</h1>
@@ -92,7 +97,15 @@ const SellerPage  = () => {
           </div>
           <div className="add-form-group">
             <label>Category:</label>
-            <input type="text" name="category" onChange={(e) => setCategory(e.target.value)} required />
+            <select name="category-dropdown" onChange={(e) => setCategory(e.target.value)} required>
+              <option value="">Select Category</option>
+              <option value="Phones">Phones</option>
+              <option value="Computers">Computers</option>
+              <option value="SmartWatch">SmartWatch</option>
+              <option value="Camera">Camera</option>
+              <option value="HeadPhones">HeadPhones</option>
+              <option value="Gaming">Gaming</option>
+            </select>
           </div>
           <div className="add-form-group">
             <label>Description:</label>
@@ -125,7 +138,7 @@ const SellerPage  = () => {
           <button type="button" className="adding-button" onClick={addProduct}>Add Product</button>
         </form>
       </div>
-     
+
       <ToastContainer />
     </div>
   );

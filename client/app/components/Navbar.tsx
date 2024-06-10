@@ -7,7 +7,7 @@ import Image from "next/image";
 import logoutimg from "../images/log-out.png";
 
 import { useAuth } from "./context/AuthContext";
-import { log } from "console";
+
 interface DecodedToken {
   role: string;
 }
@@ -18,8 +18,9 @@ const Navbar = () => {
   const { logOut } = useAuth();
 
   const signOut = () => {
-    logOut();
-    setRole("");
+  logOut();
+  setRole('')
+  
   };
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -28,11 +29,21 @@ const Navbar = () => {
       setRole(decodedToken.role);
     }
     console.log(token);
+    
+    
   });
 
   const handleRedirect = (path: string) => {
-    router.push(path);
-  };
+   router.push(path);
+
+ };
+ const isAdmin = role === "admin";
+
+ 
+ if (isAdmin) {
+   return null; 
+ }
+
 
   return (
     <div id="navb">
@@ -66,7 +77,7 @@ const Navbar = () => {
             <input type="text" placeholder="What are you looking for?" />
             <div className="icons">
               {role === "buyer" && (
-                <span onClick={() => handleRedirect("/wishList")}>❤️</span>
+                <span onClick={() => handleRedirect("/favorites")}>❤️</span>
               )}
               {role === "buyer" && (
                 <span onClick={() => handleRedirect("/panier")}>🛒</span>
