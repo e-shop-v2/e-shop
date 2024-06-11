@@ -51,6 +51,23 @@ const Panier = () => {
     setTotal(newTotal);
   };
 
+
+  const addCheckout = async () => {
+    try {
+      const response = await axios.post("http://localhost:8080/api/orders", {
+        customer: buyer.name,
+        category: panier[0].category,
+        price: total,
+        product: panier[0].name,
+      });
+      console.log(response);
+      toast.success("Order Added !");
+    } catch (err) {
+      console.error(err);
+      toast.error("can't be added");
+    }
+  };
+  
   const confirmDelete = () => {
     if (productIdToDelete) {
       axios
@@ -170,7 +187,7 @@ const Panier = () => {
           <p>Subtotal: ${total}</p>
           <p>Discount: {discountPercentage}%</p>
           <p>Total: ${total}</p>
-          <button className="checkout-button">Proceed to checkout</button>
+          <button onClick={()=>{addCheckout()}} className="checkout-button">Proceed to checkout</button>
         </div>
       </div>
 

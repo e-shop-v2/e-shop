@@ -19,7 +19,7 @@ interface ProductsViewProps {
 //searchProductId (the searched product's ID)
 // setSearchProductId (function to set search product ID)
 // deleteProduct (function to delete a product)
-const ProductsView: React.FC<ProductsViewProps> = ({
+const ProductsView = ({
   products,
   searchProductId,
   setSearchProductId,
