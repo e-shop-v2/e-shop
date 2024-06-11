@@ -15,6 +15,7 @@ db.Product = require("../models/product.js")(sequelize, DataTypes);
 db.cart = require("../models/cart.js")(sequelize, DataTypes);
 db.Panier = require("../models/panierModel")(sequelize, DataTypes);
 db.WishList = require("../models/wishListModel")(sequelize, DataTypes);
+db.orders = require("../models/orders")(sequelize, DataTypes);
 db.Buyer.belongsToMany(db.Product, { through: db.Panier });
 db.Product.belongsToMany(db.Buyer, { through: db.Panier });
 // db.stars = require("../models/stars.js")(sequelize, DataTypes);

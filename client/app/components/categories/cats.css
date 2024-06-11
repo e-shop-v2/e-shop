@@ -60,7 +60,9 @@
 }
 
 .bouallug-title-category {
-  margin-left: -1040px;
+  margin-left: -1000px;
+  margin-top: 35px;
+  padding-bottom: 50px;
 }
 
 .bouallug-category-heading h2 {

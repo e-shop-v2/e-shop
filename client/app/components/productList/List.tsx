@@ -26,12 +26,12 @@ const ProductList = () => {
     <div>
       <div
         className="top-label2"
-        style={{ display: "flex", alignItems: "center" }}
+        style={{ display: "flex", alignItems: "center" , marginLeft:"40px" }}
       >
         <img
           src="https://www.clker.com/cliparts/3/R/3/7/W/R/orange-vertical-rectangle-md.png"
           alt="IPS LCD Gaming Monitor"
-          style={{ width: "20px", height: "auto", marginRight: "10px" }}
+          style={{ width: "30px", height: "auto", marginRight: "10px" }}
         />
         <h2 className="top-subtitle">All Products</h2>
       </div>

@@ -1,14 +1,11 @@
-// Import React and other necessary components
 import React from "react";
-import BarChart from "./BarChart"; // Import the new BarChart component
+import BarChart from "./BarChart";
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
 
-// Define types for Customer, Customers, Product, and Order
 type Customer = {
   email: string;
   name: string;
   address: string;
-  stock?: number;
 };
 
 type Customers = {
@@ -19,6 +16,7 @@ type Customers = {
 type Product = {
   id: string;
   name: string;
+  category: string;
   price: number;
   stock: number;
 };
@@ -31,7 +29,6 @@ type Order = {
   total: number;
 };
 
-// Define props interface for DashboardView component
 interface DashboardViewProps {
   customers: Customers;
   products: Product[];
@@ -40,7 +37,20 @@ interface DashboardViewProps {
   handleViewChange: (view: string) => void;
 }
 
-// Define DashboardView component
+const aggregateProductsByCategory = (products: Product[]) => {
+  const categoryCount: { [key: string]: number } = {};
+
+  products.forEach((product) => {
+    if (categoryCount[product.category]) {
+      categoryCount[product.category]++;
+    } else {
+      categoryCount[product.category] = 1;
+    }
+  });
+
+  return categoryCount;
+};
+
 const DashboardView = ({
   customers,
   products,
@@ -48,28 +58,32 @@ const DashboardView = ({
   orders,
   handleViewChange,
 }: DashboardViewProps) => {
-  // Calculate total number of customers and orders
+
+
+
   const totalCustomers = customers.buyers.length + customers.sellers.length;
   const totalOrders = orders.length;
 
-  // Sort products by stock and get top 5 products
   const topProductsByStock = products.sort((a, b) => b.stock - a.stock).slice(0, 5);
 
-  // Define data for the BarChart component
+  const productCategories = aggregateProductsByCategory(products);
+  const categoryLabels = Object.keys(productCategories);
+  const categoryData = Object.values(productCategories);
+
   const barChartData = {
-    labels: ["2022", "2023", "2024", "2024"],
+    labels: categoryLabels,
     datasets: [
       {
-        label: "Users Gained",
-        data: [50, 100, 150, 200, 250], 
-        backgroundColor: "rgba(75, 192, 192, 0.6)",
-        borderColor: "rgba(75, 192, 192, 1)",
+        
+        data: categoryData,
+        backgroundColor: "rgba(218, 165, 32)",
+        borderColor: "rgba(218, 165, 32)",
+        
         borderWidth: 1,
       },
     ],
   };
 
-  // Define data for the PieChart component
   const pieData = [
     { name: "Buyers", value: customers.buyers.length },
     { name: "Sellers", value: customers.sellers.length },
@@ -78,10 +92,8 @@ const DashboardView = ({
 
   return (
     <>
-      {/* Dashboard header */}
       <header className="admin-header-dashboard">
         <h1 className="admin-main-title">Dashboard</h1>
-        {/* Statistics */}
         <div className="admin-stats">
           <div className="admin-stat-container">
             <h3>{totalCustomers}</h3>
@@ -97,9 +109,7 @@ const DashboardView = ({
           </div>
         </div>
       </header>
-      {/* Main content section */}
       <section className="admin-main-section">
-        {/* Top stock */}
         <div className="admin-top-stock">
           <div className="admin-top-stock-header">
             <h2 className="admin-red-title">Stock Leaders</h2>
@@ -133,7 +143,6 @@ const DashboardView = ({
           </table>
           
         </div>
-        {/* Role stats chart */}
         <section className="admin-role-stats-chart">
           <div className="admin-role-stats-header">
             <h3 className="admin-red-title">Role Stats</h3>
@@ -144,7 +153,6 @@ const DashboardView = ({
               See More
             </button>
           </div>
-          {/* Pie chart */}
           <PieChart width={200} height={200}>
             <Pie
               data={pieData}
@@ -163,13 +171,11 @@ const DashboardView = ({
             <Tooltip />
           </PieChart>
         </section>
-        {/* User growth chart */}
         <section className="admin-role-stats-chart">
           <div className="admin-role-stats-header">
-            <h3 className="admin-red-title">User Growth</h3>
+            <h3 className="admin-red-title">Product Categories</h3>
           </div>
-          {/* Bar chart */}
-          <BarChart chartData={barChartData} />
+          <BarChart chartData={barChartData} chartTitle="Product Categories" />
         </section>
       </section>
     </>

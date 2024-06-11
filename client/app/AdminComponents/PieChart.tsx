@@ -2,10 +2,10 @@ import React from 'react';
 import { Pie } from 'react-chartjs-2';
 
 interface PieChartProps {
-  chartData: any; // Ideally, you'd define a more specific type here
+  chartData: any; 
 }
 
-const PieChart: React.FC<PieChartProps> = ({ chartData }) => {
+const PieChart= ({ chartData }) => {
   return (
     <div className="chart-container">
       <h2 style={{ textAlign: 'center' }}>Pie Chart</h2>

@@ -19,7 +19,7 @@ interface ConfirmationWindowProps {
 }
 
 // ConfirmationWindow component
-const ConfirmationWindow: React.FC<ConfirmationWindowProps> = ({
+const ConfirmationWindow  = ({
   show,
   handleClose,
   handleConfirm,

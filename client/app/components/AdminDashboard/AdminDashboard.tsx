@@ -24,8 +24,11 @@ type Product = {
 };
 
 type Order = {
-  id: string;
-  products: Product[];
+  id: number;
+  customer: string;
+  product: string;
+  category: string;
+  price: number;
 };
 
 const AdminDashboard = () => {
@@ -84,12 +87,10 @@ const AdminDashboard = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await fetch('http://localhost:8080/api/cart/orders', {
-        headers: {
-          Authorization: 'Bearer ' + localStorage.getItem('token'),
-        },
-      });
+      const response = await fetch('http://localhost:8080/api/orders')
       const data = await response.json();
+      console.log(data);
+      
       setOrders(data);
     } catch (error) {
       console.error("couldn't retrieve orders list", error);

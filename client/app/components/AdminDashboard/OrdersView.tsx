@@ -5,10 +5,10 @@ import ConfirmationWindow from './ConfirmationWindow';
 
 interface Order {
   id: string;
-  username: string;
-  nameOfproduct: string;
+  customer: string;
+  product: string;
   category: string;
-  total: number;
+  price: number;
 }
 
 const OrdersView = () => {
@@ -25,7 +25,7 @@ const OrdersView = () => {
 
   const fetchOrders = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/api/cart/orders', {
+      const response = await axios.get('http://localhost:8080/api/orders', {
         headers: {
           Authorization: 'Bearer ' + localStorage.getItem('token'),
         },
@@ -59,9 +59,7 @@ const OrdersView = () => {
     setModalShow(true);
   };
 
-  const filteredOrders = orders.filter((order) =>
-    order.username.toLowerCase().includes(searchCustomer.toLowerCase())
-  );
+
 
   return (
     <div className="admin-orders-section">
@@ -84,7 +82,7 @@ const OrdersView = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredOrders.map((order) => (
+          {orders.map((order) => (
             <tr key={order.id}>
               <td>
                 <button
@@ -94,10 +92,10 @@ const OrdersView = () => {
                   Delete
                 </button>
               </td>
-              <td>{order.username}</td>
-              <td>{order.nameOfproduct}</td>
+              <td>{order.customer}</td>
+              <td>{order.product}</td>
               <td>{order.category}</td>
-              <td>{order.total}</td>
+              <td>{order.price}</td>
             </tr>
           ))}
         </tbody>

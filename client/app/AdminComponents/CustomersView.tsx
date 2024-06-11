@@ -23,7 +23,7 @@ interface CustomersViewProps {
   switchUserRole: (email: string, newRole: string) => void;
 }
 
-const CustomersView: React.FC<CustomersViewProps> = ({
+const CustomersView = ({
   customers,
   filter,
   setFilter,
